@@ -14,12 +14,12 @@ class MysqlClientManager:
         self.engine: Union[AsyncEngine, None] = None
         self.session_factory = None
 
-    def get_url(self):
+    def _get_url(self):
         return f"mysql+asyncmy://{self.db_config.user}:{self.db_config.password}@{self.db_config.host}:{self.db_config.port}/{self.db_config.database}?charset=utf8mb4"
 
     def init(self):
         self.engine = create_async_engine(
-            self.get_url(),
+            self._get_url(),
             pool_size=10,
             pool_pre_ping=True,
         )
