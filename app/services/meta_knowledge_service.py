@@ -126,16 +126,16 @@ class MetaKnowledgeService:
                     "embedding_text": alia,
                     "payload": self._convert_column_info_from_mysql_to_qdrant(column_info)
                 })
-            embedding_text = [point["embedding_text"] for point in points]
-            embeddings = []
-            batch_size = 20
-            for i in range(0, len(embedding_text), batch_size):
-                batch_embedding_text = embedding_text[i:i + batch_size]
-                batch_embeddings = await self.embedding_client.aembed_documents(batch_embedding_text)
-                embeddings.extend(batch_embeddings)
-            ids = [point["id"] for point in points]
-            payloads = [point["payload"] for point in points]
-            await self.column_qdrant_repository.upsert_embedding(ids, embeddings, payloads)
+        embedding_text = [point["embedding_text"] for point in points]
+        embeddings = []
+        batch_size = 20
+        for i in range(0, len(embedding_text), batch_size):
+            batch_embedding_text = embedding_text[i:i + batch_size]
+            batch_embeddings = await self.embedding_client.aembed_documents(batch_embedding_text)
+            embeddings.extend(batch_embeddings)
+        ids = [point["id"] for point in points]
+        payloads = [point["payload"] for point in points]
+        await self.column_qdrant_repository.upsert_embedding(ids, embeddings, payloads)
 
     async def _save_value_info_to_es(self, column_infos: list[ColumnInfoMySQL], meta_config: MetaConfig):
         await self.value_es_repository.ensure_index()

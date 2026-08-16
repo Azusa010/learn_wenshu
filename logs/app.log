@@ -14,3 +14,515 @@
 2026-08-16 16:52:27.738 | INFO     | request_id - 1 | app.services.meta_knowledge_service:build:55 - 为值信息添加全文索引
 2026-08-16 16:52:27.757 | INFO     | request_id - 1 | app.services.meta_knowledge_service:build:60 - 保存指标信息到meta数据库
 2026-08-16 16:52:28.513 | INFO     | request_id - 1 | app.services.meta_knowledge_service:build:63 - 为指标信息添加向量索引
+2026-08-16 19:08:41.937 | INFO     | request_id - 1 | app.services.meta_knowledge_service:build:44 - 加载配置文件完成
+2026-08-16 19:08:41.980 | ERROR    | request_id - 1 | __main__:<module>:70 - Error: (asyncmy.errors.IntegrityError) (1062, "Duplicate entry 'dim_region.region_id' for key 'column_info.PRIMARY'")
+[SQL: INSERT INTO column_info (id, name, type, `role`, examples, description, alias, table_id) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)]
+[parameters: [('dim_region.region_id', 'region_id', 'varchar(20)', 'primary_key', '[]', '地区唯一标识。', '["\\u5730\\u533aID", "\\u533a\\u57dfID"]', 'dim_region'), ('dim_region.province', 'province', 'varchar(50)', 'dimension', '[]', '订单所属的省份名称。', '["\\u7701\\u4efd", "\\u7701", "\\u6240\\u5728\\u7701\\u4efd"]', 'dim_region'), ('dim_region.region_name', 'region_name', 'varchar(50)', 'dimension', '[]', '订单所属的大区名称，如华东、华南等。', '["\\u5730\\u533a", "\\u533a\\u57df", "\\u5927\\u533a"]', 'dim_region'), ('dim_region.country', 'country', 'varchar(50)', 'dimension', '[]', '地区所属国家名称。', '["\\u56fd\\u5bb6", "\\u56fd\\u5bb6\\u540d\\u79f0"]', 'dim_region'), ('dim_customer.customer_id', 'customer_id', 'varchar(20)', 'primary_key', '[]', '客户唯一标识。', '["\\u5ba2\\u6237ID", "\\u7528\\u6237ID"]', 'dim_customer'), ('dim_customer.customer_name', 'customer_name', 'varchar(50)', 'dimension', '[]', '客户名称。', '["\\u5ba2\\u6237\\u540d\\u79f0", "\\u7528\\u6237\\u540d\\u79f0"]', 'dim_customer'), ('dim_customer.gender', 'gender', 'varchar(10)', 'dimension', '[]', '客户性别。', '["\\u6027\\u522b"]', 'dim_customer'), ('dim_customer.member_level', 'member_level', 'varchar(20)', 'dimension', '[]', '客户会员等级。', '["\\u4f1a\\u5458\\u7b49\\u7ea7", "\\u7528\\u6237\\u7b49\\u7ea7"]', 'dim_customer')  ... displaying 10 of 24 total bound parameter sets ...  ('fact_order.order_quantity', 'order_quantity', 'int', 'measure', '[]', '订单中商品的购买数量。', '["\\u9500\\u91cf", "\\u8d2d\\u4e70\\u6570\\u91cf", "\\u4ef6\\u6570"]', 'fact_order'), ('fact_order.order_amount', 'order_amount', 'float', 'measure', '[]', '订单金额。', '["\\u9500\\u552e\\u989d", "\\u8ba2\\u5355\\u91d1\\u989d", "\\u6536\\u5165"]', 'fact_order')]]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+2026-08-16 19:09:18.726 | INFO     | request_id - 1 | app.services.meta_knowledge_service:build:44 - 加载配置文件完成
+2026-08-16 19:09:18.789 | INFO     | request_id - 1 | app.services.meta_knowledge_service:build:49 - 保存表信息到meta数据库
+2026-08-16 19:09:56.221 | ERROR    | request_id - 1 | __main__:<module>:70 - Error: Connection error.
+2026-08-16 19:15:12.236 | INFO     | request_id - 1 | app.services.meta_knowledge_service:build:44 - 加载配置文件完成
+2026-08-16 19:19:19.025 | INFO     | request_id - 1 | __main__:build:49 - 外部依赖服务检查完成
+2026-08-16 19:19:19.071 | INFO     | request_id - 1 | app.services.meta_knowledge_service:build:44 - 加载配置文件完成
+2026-08-16 19:19:19.165 | INFO     | request_id - 1 | app.services.meta_knowledge_service:build:49 - 保存表信息到meta数据库
+2026-08-16 19:20:04.203 | ERROR    | request_id - 1 | __main__:<module>:87 - 构建元知识库失败
+Traceback (most recent call last):
+
+  File "D:\qdd\learn_wenshu\.venv\Lib\site-packages\httpx\_transports\default.py", line 101, in map_httpcore_exceptions
+    yield
+  File "D:\qdd\learn_wenshu\.venv\Lib\site-packages\httpx\_transports\default.py", line 394, in handle_async_request
+    resp = await self._pool.handle_async_request(req)
+                 │    │     │                    └ <Request [b'POST']>
+                 │    │     └ <function AsyncConnectionPool.handle_async_request at 0x000002061D49C2C0>
+                 │    └ <AsyncConnectionPool [Requests: 0 active, 0 queued | Connections: 0 active, 0 idle]>
+                 └ <httpx.AsyncHTTPTransport object at 0x000002061D393CE0>
+  File "D:\qdd\learn_wenshu\.venv\Lib\site-packages\httpcore\_async\connection_pool.py", line 256, in handle_async_request
+    raise exc from None
+  File "D:\qdd\learn_wenshu\.venv\Lib\site-packages\httpcore\_async\connection_pool.py", line 236, in handle_async_request
+    response = await connection.handle_async_request(
+                     │          └ <function AsyncHTTPConnection.handle_async_request at 0x000002061D47B4C0>
+                     └ <AsyncHTTPConnection ['http://localhost:8081', HTTP/1.1, CLOSED, Request Count: 1]>
+  File "D:\qdd\learn_wenshu\.venv\Lib\site-packages\httpcore\_async\connection.py", line 103, in handle_async_request
+    return await self._connection.handle_async_request(request)
+                 │    │           │                    └ <Request [b'POST']>
+                 │    │           └ <function AsyncHTTP11Connection.handle_async_request at 0x000002061D47A2A0>
+                 │    └ <AsyncHTTP11Connection ['http://localhost:8081', CLOSED, Request Count: 1]>
+                 └ <AsyncHTTPConnection ['http://localhost:8081', HTTP/1.1, CLOSED, Request Count: 1]>
+  File "D:\qdd\learn_wenshu\.venv\Lib\site-packages\httpcore\_async\http11.py", line 136, in handle_async_request
+    raise exc
+  File "D:\qdd\learn_wenshu\.venv\Lib\site-packages\httpcore\_async\http11.py", line 106, in handle_async_request
+    ) = await self._receive_response_headers(**kwargs)
+              │    │                           └ {'request': <Request [b'POST']>}
+              │    └ <function AsyncHTTP11Connection._receive_response_headers at 0x000002061D47A520>
+              └ <AsyncHTTP11Connection ['http://localhost:8081', CLOSED, Request Count: 1]>
+  File "D:\qdd\learn_wenshu\.venv\Lib\site-packages\httpcore\_async\http11.py", line 177, in _receive_response_headers
+    event = await self._receive_event(timeout=timeout)
+                  │    │                      └ None
+                  │    └ <function AsyncHTTP11Connection._receive_event at 0x000002061D47A660>
+                  └ <AsyncHTTP11Connection ['http://localhost:8081', CLOSED, Request Count: 1]>
+  File "D:\qdd\learn_wenshu\.venv\Lib\site-packages\httpcore\_async\http11.py", line 217, in _receive_event
+    data = await self._network_stream.read(
+                 │    │               └ <function AnyIOStream.read at 0x000002061D4B05E0>
+                 │    └ <httpcore._backends.anyio.AnyIOStream object at 0x000002061EEF7CD0>
+                 └ <AsyncHTTP11Connection ['http://localhost:8081', CLOSED, Request Count: 1]>
+  File "D:\qdd\learn_wenshu\.venv\Lib\site-packages\httpcore\_backends\anyio.py", line 32, in read
+    with map_exceptions(exc_map):
+         │              └ {<class 'TimeoutError'>: <class 'httpcore.ReadTimeout'>, <class 'anyio.BrokenResourceError'>: <class 'httpcore.ReadError'>, <...
+         └ <function map_exceptions at 0x000002061D324540>
+  File "C:\Users\Azusama\AppData\Roaming\uv\python\cpython-3.13.3-windows-x86_64-none\Lib\contextlib.py", line 162, in __exit__
+    self.gen.throw(value)
+    │    │   │     └ BrokenResourceError()
+    │    │   └ <method 'throw' of 'generator' objects>
+    │    └ <generator object map_exceptions at 0x000002061F5C4E50>
+    └ <contextlib._GeneratorContextManager object at 0x000002061F2BCA60>
+  File "D:\qdd\learn_wenshu\.venv\Lib\site-packages\httpcore\_exceptions.py", line 14, in map_exceptions
+    raise to_exc(exc) from exc
+          └ <class 'httpcore.ReadError'>
+
+httpcore.ReadError
+
+
+The above exception was the direct cause of the following exception:
+
+
+Traceback (most recent call last):
+
+  File "D:\qdd\learn_wenshu\.venv\Lib\site-packages\openai\_base_client.py", line 1709, in request
+    response = await self._send_request(
+                     │    └ <function AsyncOpenAI._send_request at 0x00000206699B7600>
+                     └ <openai.AsyncOpenAI object at 0x000002061EF4C590>
+  File "D:\qdd\learn_wenshu\.venv\Lib\site-packages\openai\_client.py", line 1097, in _send_request
+    response = await self._send_with_auth_retry(request, stream=stream, **kwargs)
+                     │    │                     │               │         └ {}
+                     │    │                     │               └ False
+                     │    │                     └ <Request('POST', 'http://localhost:8081/v1/embeddings')>
+                     │    └ <function AsyncOpenAI._send_with_auth_retry at 0x00000206699B7560>
+                     └ <openai.AsyncOpenAI object at 0x000002061EF4C590>
+  File "D:\qdd\learn_wenshu\.venv\Lib\site-packages\openai\_client.py", line 1075, in _send_with_auth_retry
+    response = await super()._send_request(request, stream=stream, **kwargs)
+                                           │               │         └ {}
+                                           │               └ False
+                                           └ <Request('POST', 'http://localhost:8081/v1/embeddings')>
+  File "D:\qdd\learn_wenshu\.venv\Lib\site-packages\openai\_base_client.py", line 1628, in _send_request
+    return await self._client.send(request, stream=stream, **kwargs)
+                 │    │       │    │               │         └ {}
+                 │    │       │    │               └ False
+                 │    │       │    └ <Request('POST', 'http://localhost:8081/v1/embeddings')>
+                 │    │       └ <function AsyncClient.send at 0x0000020666381BC0>
+                 │    └ <httpx.AsyncClient object at 0x000002061D4AE350>
+                 └ <openai.AsyncOpenAI object at 0x000002061EF4C590>
+  File "D:\qdd\learn_wenshu\.venv\Lib\site-packages\httpx\_client.py", line 1629, in send
+    response = await self._send_handling_auth(
+                     │    └ <function AsyncClient._send_handling_auth at 0x0000020666381C60>
+                     └ <httpx.AsyncClient object at 0x000002061D4AE350>
+  File "D:\qdd\learn_wenshu\.venv\Lib\site-packages\httpx\_client.py", line 1657, in _send_handling_auth
+    response = await self._send_handling_redirects(
+                     │    └ <function AsyncClient._send_handling_redirects at 0x0000020666381D00>
+                     └ <httpx.AsyncClient object at 0x000002061D4AE350>
+  File "D:\qdd\learn_wenshu\.venv\Lib\site-packages\httpx\_client.py", line 1694, in _send_handling_redirects
+    response = await self._send_single_request(request)
+                     │    │                    └ <Request('POST', 'http://localhost:8081/v1/embeddings')>
+                     │    └ <function AsyncClient._send_single_request at 0x0000020666381DA0>
+                     └ <httpx.AsyncClient object at 0x000002061D4AE350>
+  File "D:\qdd\learn_wenshu\.venv\Lib\site-packages\httpx\_client.py", line 1730, in _send_single_request
+    response = await transport.handle_async_request(request)
+                     │         │                    └ <Request('POST', 'http://localhost:8081/v1/embeddings')>
+                     │         └ <function AsyncHTTPTransport.handle_async_request at 0x0000020666366AC0>
+                     └ <httpx.AsyncHTTPTransport object at 0x000002061D393CE0>
+  File "D:\qdd\learn_wenshu\.venv\Lib\site-packages\httpx\_transports\default.py", line 393, in handle_async_request
+    with map_httpcore_exceptions():
+         └ <function map_httpcore_exceptions at 0x00000206663660C0>
+  File "C:\Users\Azusama\AppData\Roaming\uv\python\cpython-3.13.3-windows-x86_64-none\Lib\contextlib.py", line 162, in __exit__
+    self.gen.throw(value)
+    │    │   │     └ ReadError(BrokenResourceError())
+    │    │   └ <method 'throw' of 'generator' objects>
+    │    └ <generator object map_httpcore_exceptions at 0x000002061F2FAA40>
+    └ <contextlib._GeneratorContextManager object at 0x000002061F2BD630>
+  File "D:\qdd\learn_wenshu\.venv\Lib\site-packages\httpx\_transports\default.py", line 118, in map_httpcore_exceptions
+    raise mapped_exc(message) from exc
+          │          └ ''
+          └ <class 'httpx.ReadError'>
+
+httpx.ReadError
+
+
+The above exception was the direct cause of the following exception:
+
+
+Traceback (most recent call last):
+
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+
+> File "D:\qdd\learn_wenshu\app\scripts\build_meta_knowledge.py", line 84, in <module>
+    asyncio.run(build(config_path))
+    │       │   │     └ WindowsPath('conf/meta_config.yaml')
+    │       │   └ <function build at 0x000002061CCFA480>
+    │       └ <function run at 0x0000020665B200E0>
+    └ <module 'asyncio' from 'C:\\Users\\Azusama\\AppData\\Roaming\\uv\\python\\cpython-3.13.3-windows-x86_64-none\\Lib\\asyncio\\_...
+
+  File "C:\Users\Azusama\AppData\Roaming\uv\python\cpython-3.13.3-windows-x86_64-none\Lib\asyncio\runners.py", line 195, in run
+    return runner.run(main)
+           │      │   └ <coroutine object build at 0x000002061CCB1A80>
+           │      └ <function Runner.run at 0x0000020665BEA660>
+           └ <asyncio.runners.Runner object at 0x000002061CCB1BE0>
+  File "C:\Users\Azusama\AppData\Roaming\uv\python\cpython-3.13.3-windows-x86_64-none\Lib\asyncio\runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           │    │                        └ <Task finished name='Task-1' coro=<build() done, defined at D:\qdd\learn_wenshu\app\scripts\build_meta_knowledge.py:34> excep...
+           │    └ None
+           └ <asyncio.runners.Runner object at 0x000002061CCB1BE0>
+  File "C:\Users\Azusama\AppData\Roaming\uv\python\cpython-3.13.3-windows-x86_64-none\Lib\asyncio\base_events.py", line 719, in run_until_complete
+    return future.result()
+           │      └ <method 'result' of '_asyncio.Task' objects>
+           └ <Task finished name='Task-1' coro=<build() done, defined at D:\qdd\learn_wenshu\app\scripts\build_meta_knowledge.py:34> excep...
+
+  File "D:\qdd\learn_wenshu\app\scripts\build_meta_knowledge.py", line 66, in build
+    await meta_knowledge_service.build(config_path)
+          │                      │     └ WindowsPath('conf/meta_config.yaml')
+          │                      └ <function MetaKnowledgeService.build at 0x000002061CCFA7A0>
+          └ <app.services.meta_knowledge_service.MetaKnowledgeService object at 0x000002061EF4FCB0>
+
+  File "D:\qdd\learn_wenshu\app\services\meta_knowledge_service.py", line 51, in build
+    await self._save_column_info_to_qdrant(column_infos)
+          │    │                           └ [<app.models.mysql.column_info_mysql.ColumnInfoMySQL object at 0x000002061F2F0050>, <app.models.mysql.column_info_mysql.Colum...
+          │    └ <function MetaKnowledgeService._save_column_info_to_qdrant at 0x000002061CCFB420>
+          └ <app.services.meta_knowledge_service.MetaKnowledgeService object at 0x000002061EF4FCB0>
+
+  File "D:\qdd\learn_wenshu\app\services\meta_knowledge_service.py", line 134, in _save_column_info_to_qdrant
+    batch_embeddings = await self.embedding_client.aembed_documents(batch_embedding_text)
+                             │    │                │                └ ['产品名称', 'category', '商品所属品类。', '商品类别', '品类', '分类', 'brand', '商品品牌名称。', '品牌', '品牌名称', 'date_id', '日期唯一标识，格式 yyyyMMdd。', '日期ID...
+                             │    │                └ <function OpenAIEmbeddings.aembed_documents at 0x000002066A0AD300>
+                             │    └ OpenAIEmbeddings(client=<openai.resources.embeddings.Embeddings object at 0x000002061EF4C440>, async_client=<openai.resources...
+                             └ <app.services.meta_knowledge_service.MetaKnowledgeService object at 0x000002061EF4FCB0>
+
+  File "D:\qdd\learn_wenshu\.venv\Lib\site-packages\langchain_openai\embeddings\base.py", line 779, in aembed_documents
+    response = await self.async_client.create(
+                     │    │            └ <function AsyncEmbeddings.create at 0x000002061ED32480>
+                     │    └ <openai.resources.embeddings.AsyncEmbeddings object at 0x000002061EF4C6E0>
+                     └ OpenAIEmbeddings(client=<openai.resources.embeddings.Embeddings object at 0x000002061EF4C440>, async_client=<openai.resources...
+  File "D:\qdd\learn_wenshu\.venv\Lib\site-packages\openai\resources\embeddings.py", line 260, in create
+    return await self._post(
+                 │    └ <bound method AsyncAPIClient.post of <openai.AsyncOpenAI object at 0x000002061EF4C590>>
+                 └ <openai.resources.embeddings.AsyncEmbeddings object at 0x000002061EF4C6E0>
+  File "D:\qdd\learn_wenshu\.venv\Lib\site-packages\openai\_base_client.py", line 1992, in post
+    return await self.request(cast_to, opts, stream=stream, stream_cls=stream_cls)
+                 │    │       │        │            │                  └ None
+                 │    │       │        │            └ False
+                 │    │       │        └ FinalRequestOptions(method='post', url='/embeddings', params={}, headers=NOT_GIVEN, max_retries=NOT_GIVEN, timeout=NOT_GIVEN,...
+                 │    │       └ <class 'openai.types.create_embedding_response.CreateEmbeddingResponse'>
+                 │    └ <function AsyncAPIClient.request at 0x00000206699B36A0>
+                 └ <openai.AsyncOpenAI object at 0x000002061EF4C590>
+  File "D:\qdd\learn_wenshu\.venv\Lib\site-packages\openai\_base_client.py", line 1744, in request
+    raise APIConnectionError(request=request) from err
+          │                          └ <Request('POST', 'http://localhost:8081/v1/embeddings')>
+          └ <class 'openai.APIConnectionError'>
+
+openai.APIConnectionError: Connection error.
+2026-08-16 19:24:18.127 | INFO     | request_id - 1 | __main__:build:49 - 外部依赖服务检查完成
+2026-08-16 19:24:18.187 | INFO     | request_id - 1 | app.services.meta_knowledge_service:build:44 - 加载配置文件完成
+2026-08-16 19:24:18.294 | ERROR    | request_id - 1 | __main__:<module>:87 - 构建元知识库失败
+Traceback (most recent call last):
+
+  File "D:\qdd\learn_wenshu\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1938, in _exec_single_context
+    self.dialect.do_executemany(
+    │    │       └ <function MySQLDialect_mysqldb.do_executemany at 0x000002503282E340>
+    │    └ <sqlalchemy.dialects.mysql.asyncmy.MySQLDialect_asyncmy object at 0x0000025032D05FD0>
+    └ <sqlalchemy.engine.base.Connection object at 0x0000025034E22210>
+  File "D:\qdd\learn_wenshu\.venv\Lib\site-packages\sqlalchemy\dialects\mysql\mysqldb.py", line 197, in do_executemany
+    rowcount = cursor.executemany(statement, parameters)
+               │      │           │          └ [('dim_region.region_id', 'region_id', 'varchar(20)', 'primary_key', '[]', '地区唯一标识。', '["\\u5730\\u533aID", "\\u533a\\u57dfID...
+               │      │           └ 'INSERT INTO column_info (id, name, type, `role`, examples, description, alias, table_id) VALUES (%s, %s, %s, %s, %s, %s, %s,...
+               │      └ <function AsyncAdapt_dbapi_cursor.executemany at 0x0000025032838360>
+               └ <sqlalchemy.dialects.mysql.asyncmy.AsyncAdapt_asyncmy_cursor object at 0x0000025034E0E700>
+  File "D:\qdd\learn_wenshu\.venv\Lib\site-packages\sqlalchemy\connectors\asyncio.py", line 242, in executemany
+    self._adapt_connection._handle_exception(error)
+    │    └ <member '_adapt_connection' of 'AsyncAdapt_dbapi_cursor' objects>
+    └ <sqlalchemy.dialects.mysql.asyncmy.AsyncAdapt_asyncmy_cursor object at 0x0000025034E0E700>
+  File "D:\qdd\learn_wenshu\.venv\Lib\site-packages\sqlalchemy\dialects\mysql\asyncmy.py", line 94, in _handle_exception
+    raise error
+          └ IntegrityError(1062, "Duplicate entry 'dim_region.region_id' for key 'column_info.PRIMARY'")
+  File "D:\qdd\learn_wenshu\.venv\Lib\site-packages\sqlalchemy\connectors\asyncio.py", line 238, in executemany
+    return self.await_(
+           │    └ <member 'await_' of 'AsyncAdapt_dbapi_cursor' objects>
+           └ <sqlalchemy.dialects.mysql.asyncmy.AsyncAdapt_asyncmy_cursor object at 0x0000025034E0E700>
+  File "D:\qdd\learn_wenshu\.venv\Lib\site-packages\sqlalchemy\util\_concurrency_py3k.py", line 132, in await_only
+    return current.parent.switch(awaitable)  # type: ignore[no-any-return,attr-defined] # noqa: E501
+           │       │             └ <coroutine object AsyncAdapt_dbapi_cursor._executemany_async at 0x0000025034E025C0>
+           │       └ <attribute 'parent' of 'greenlet.greenlet' objects>
+           └ <_AsyncIoGreenlet object at 0x0000025034E2A040 (otid=0x0000025030AA9BA0) dead>
+  File "D:\qdd\learn_wenshu\.venv\Lib\site-packages\sqlalchemy\util\_concurrency_py3k.py", line 196, in greenlet_spawn
+    value = await result
+                  └ <_cython_3_2_9.coroutine object at 0x0000025034E1A7B0>
+  File "D:\qdd\learn_wenshu\.venv\Lib\site-packages\sqlalchemy\connectors\asyncio.py", line 263, in _executemany_async
+    return await self._cursor.executemany(operation, seq_of_parameters)
+                 │    │                   │          └ [('dim_region.region_id', 'region_id', 'varchar(20)', 'primary_key', '[]', '地区唯一标识。', '["\\u5730\\u533aID", "\\u533a\\u57dfID...
+                 │    │                   └ 'INSERT INTO column_info (id, name, type, `role`, examples, description, alias, table_id) VALUES (%s, %s, %s, %s, %s, %s, %s,...
+                 │    └ <member '_cursor' of 'AsyncAdapt_dbapi_cursor' objects>
+                 └ <sqlalchemy.dialects.mysql.asyncmy.AsyncAdapt_asyncmy_cursor object at 0x0000025034E0E700>
+  File "asyncmy/cursors.pyx", line 271, in executemany
+    return await self._executemany(query, args)
+  File "asyncmy/cursors.pyx", line 317, in _executemany
+    return await self._do_execute_many(
+  File "asyncmy/cursors.pyx", line 376, in _do_execute_many
+    rows += await self.execute(sql)
+  File "asyncmy/cursors.pyx", line 245, in execute
+    result = await self._query(query)
+  File "asyncmy/cursors.pyx", line 490, in _query
+    await conn.query(q)
+  File "asyncmy/connection.pyx", line 740, in query
+    await self._read_query_result(unbuffered=unbuffered)
+  File "asyncmy/connection.pyx", line 1116, in _read_query_result
+    await result.read()
+  File "asyncmy/connection.pyx", line 1653, in read
+    first_packet = await self.connection.read_packet()
+  File "asyncmy/connection.pyx", line 1087, in read_packet
+    packet.raise_for_error()
+  File "asyncmy/protocol.pyx", line 956, in asyncmy.protocol.MysqlPacket.raise_for_error
+    cpdef raise_for_error(self):
+  File "asyncmy/protocol.pyx", line 957, in asyncmy.protocol.MysqlPacket.raise_for_error
+    errors.raise_mysql_exception(self._data)
+    │      └ <cyfunction raise_mysql_exception at 0x0000025032C68530>
+    └ <module 'asyncmy.errors' from 'D:\\qdd\\learn_wenshu\\.venv\\Lib\\site-packages\\asyncmy\\errors.cp313-win_amd64.pyd'>
+  File "asyncmy/errors.pyx", line 141, in asyncmy.errors.raise_mysql_exception
+    cpdef raise_mysql_exception(bytes data):
+          └ <cyfunction raise_mysql_exception at 0x0000025032C68530>
+  File "asyncmy/errors.pyx", line 156, in asyncmy.errors.raise_mysql_exception
+    raise exc
+
+asyncmy.errors.IntegrityError: (1062, "Duplicate entry 'dim_region.region_id' for key 'column_info.PRIMARY'")
+
+
+The above exception was the direct cause of the following exception:
+
+
+Traceback (most recent call last):
+
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+
+> File "D:\qdd\learn_wenshu\app\scripts\build_meta_knowledge.py", line 84, in <module>
+    asyncio.run(build(config_path))
+    │       │   │     └ WindowsPath('conf/meta_config.yaml')
+    │       │   └ <function build at 0x000002503278A480>
+    │       └ <function run at 0x000002507B5900E0>
+    └ <module 'asyncio' from 'C:\\Users\\Azusama\\AppData\\Roaming\\uv\\python\\cpython-3.13.3-windows-x86_64-none\\Lib\\asyncio\\_...
+
+  File "C:\Users\Azusama\AppData\Roaming\uv\python\cpython-3.13.3-windows-x86_64-none\Lib\asyncio\runners.py", line 195, in run
+    return runner.run(main)
+           │      │   └ <coroutine object build at 0x0000025032741A80>
+           │      └ <function Runner.run at 0x000002507B65A660>
+           └ <asyncio.runners.Runner object at 0x0000025032741BE0>
+  File "C:\Users\Azusama\AppData\Roaming\uv\python\cpython-3.13.3-windows-x86_64-none\Lib\asyncio\runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           │    │                        └ <Task finished name='Task-1' coro=<build() done, defined at D:\qdd\learn_wenshu\app\scripts\build_meta_knowledge.py:34> excep...
+           │    └ None
+           └ <asyncio.runners.Runner object at 0x0000025032741BE0>
+  File "C:\Users\Azusama\AppData\Roaming\uv\python\cpython-3.13.3-windows-x86_64-none\Lib\asyncio\base_events.py", line 719, in run_until_complete
+    return future.result()
+           │      └ <method 'result' of '_asyncio.Task' objects>
+           └ <Task finished name='Task-1' coro=<build() done, defined at D:\qdd\learn_wenshu\app\scripts\build_meta_knowledge.py:34> excep...
+
+  File "D:\qdd\learn_wenshu\app\scripts\build_meta_knowledge.py", line 66, in build
+    await meta_knowledge_service.build(config_path)
+          │                      │     └ WindowsPath('conf/meta_config.yaml')
+          │                      └ <function MetaKnowledgeService.build at 0x000002503278A7A0>
+          └ <app.services.meta_knowledge_service.MetaKnowledgeService object at 0x0000025034D781A0>
+
+  File "D:\qdd\learn_wenshu\app\services\meta_knowledge_service.py", line 48, in build
+    column_infos: list[ColumnInfoMySQL] = await self._save_table_info_to_meta_db(meta_config)
+                       │                        │    │                           └ MetaConfig(tables=[TableConfig(name='dim_region', role='dim', description='地区维度表，用于描述订单发生的地理区域信息。', columns=[ColumnConfig(nam...
+                       │                        │    └ <function MetaKnowledgeService._save_table_info_to_meta_db at 0x000002503278B100>
+                       │                        └ <app.services.meta_knowledge_service.MetaKnowledgeService object at 0x0000025034D781A0>
+                       └ <class 'app.models.mysql.column_info_mysql.ColumnInfoMySQL'>
+
+  File "D:\qdd\learn_wenshu\app\services\meta_knowledge_service.py", line 90, in _save_table_info_to_meta_db
+    async with self.meta_mysql_repository.session.begin():
+               │    │                     │       └ <function AsyncSession.begin at 0x00000250326CDE40>
+               │    │                     └ <sqlalchemy.ext.asyncio.session.AsyncSession object at 0x00000250349EEBA0>
+               │    └ <app.repositories.mysql.meta.meta_mysql_repository.MetaMysqlRepository object at 0x00000250349EFA10>
+               └ <app.services.meta_knowledge_service.MetaKnowledgeService object at 0x0000025034D781A0>
+
+  File "D:\qdd\learn_wenshu\.venv\Lib\site-packages\sqlalchemy\ext\asyncio\session.py", line 1886, in __aexit__
+    await greenlet_spawn(
+          └ <function greenlet_spawn at 0x0000025031CEAB60>
+  File "D:\qdd\learn_wenshu\.venv\Lib\site-packages\sqlalchemy\util\_concurrency_py3k.py", line 203, in greenlet_spawn
+    result = context.switch(value)
+             │       │      └ None
+             │       └ <method 'switch' of 'greenlet.greenlet' objects>
+             └ <_AsyncIoGreenlet object at 0x0000025034E2A040 (otid=0x0000025030AA9BA0) dead>
+  File "D:\qdd\learn_wenshu\.venv\Lib\site-packages\sqlalchemy\engine\util.py", line 147, in __exit__
+    with util.safe_reraise():
+         │    └ <class 'sqlalchemy.util.langhelpers.safe_reraise'>
+         └ <module 'sqlalchemy.util' from 'D:\\qdd\\learn_wenshu\\.venv\\Lib\\site-packages\\sqlalchemy\\util\\__init__.py'>
+  File "D:\qdd\learn_wenshu\.venv\Lib\site-packages\sqlalchemy\util\langhelpers.py", line 122, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+          │         │              └ <traceback object at 0x0000025034E319C0>
+          │         └ <method 'with_traceback' of 'BaseException' objects>
+          └ IntegrityError('(asyncmy.errors.IntegrityError) (1062, "Duplicate entry \'dim_region.region_id\' for key \'column_info.PRIMAR...
+  File "D:\qdd\learn_wenshu\.venv\Lib\site-packages\sqlalchemy\engine\util.py", line 145, in __exit__
+    self.commit()
+    │    └ <function SessionTransaction.commit at 0x00000250325D8180>
+    └ <sqlalchemy.orm.session.SessionTransaction object at 0x0000025034E2A550>
+  File "<string>", line 2, in commit
+  File "D:\qdd\learn_wenshu\.venv\Lib\site-packages\sqlalchemy\orm\state_changes.py", line 137, in _go
+    ret_value = fn(self, *arg, **kw)
+                │  │      │      └ {'_to_root': False}
+                │  │      └ ()
+                │  └ <sqlalchemy.orm.session.SessionTransaction object at 0x0000025034E2A550>
+                └ <function SessionTransaction.commit at 0x00000250325D80E0>
+  File "D:\qdd\learn_wenshu\.venv\Lib\site-packages\sqlalchemy\orm\session.py", line 1316, in commit
+    self._prepare_impl()
+    │    └ <function SessionTransaction._prepare_impl at 0x00000250325D8040>
+    └ <sqlalchemy.orm.session.SessionTransaction object at 0x0000025034E2A550>
+  File "<string>", line 2, in _prepare_impl
+  File "D:\qdd\learn_wenshu\.venv\Lib\site-packages\sqlalchemy\orm\state_changes.py", line 137, in _go
+    ret_value = fn(self, *arg, **kw)
+                │  │      │      └ {}
+                │  │      └ ()
+                │  └ <sqlalchemy.orm.session.SessionTransaction object at 0x0000025034E2A550>
+                └ <function SessionTransaction._prepare_impl at 0x00000250325D3EC0>
+  File "D:\qdd\learn_wenshu\.venv\Lib\site-packages\sqlalchemy\orm\session.py", line 1290, in _prepare_impl
+    self.session.flush()
+    │    │       └ <function Session.flush at 0x00000250325E40E0>
+    │    └ <sqlalchemy.orm.session.Session object at 0x00000250349EF620>
+    └ <sqlalchemy.orm.session.SessionTransaction object at 0x0000025034E2A550>
+  File "D:\qdd\learn_wenshu\.venv\Lib\site-packages\sqlalchemy\orm\session.py", line 4353, in flush
+    self._flush(objects)
+    │    │      └ None
+    │    └ <function Session._flush at 0x00000250325E42C0>
+    └ <sqlalchemy.orm.session.Session object at 0x00000250349EF620>
+  File "D:\qdd\learn_wenshu\.venv\Lib\site-packages\sqlalchemy\orm\session.py", line 4488, in _flush
+    with util.safe_reraise():
+         │    └ <class 'sqlalchemy.util.langhelpers.safe_reraise'>
+         └ <module 'sqlalchemy.util' from 'D:\\qdd\\learn_wenshu\\.venv\\Lib\\site-packages\\sqlalchemy\\util\\__init__.py'>
+  File "D:\qdd\learn_wenshu\.venv\Lib\site-packages\sqlalchemy\util\langhelpers.py", line 122, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+          │         │              └ <traceback object at 0x0000025034E31BC0>
+          │         └ <method 'with_traceback' of 'BaseException' objects>
+          └ IntegrityError('(asyncmy.errors.IntegrityError) (1062, "Duplicate entry \'dim_region.region_id\' for key \'column_info.PRIMAR...
+  File "D:\qdd\learn_wenshu\.venv\Lib\site-packages\sqlalchemy\orm\session.py", line 4449, in _flush
+    flush_context.execute()
+    │             └ <function UOWTransaction.execute at 0x000002503255FBA0>
+    └ <sqlalchemy.orm.unitofwork.UOWTransaction object at 0x0000025034D786E0>
+  File "D:\qdd\learn_wenshu\.venv\Lib\site-packages\sqlalchemy\orm\unitofwork.py", line 465, in execute
+    rec.execute(self)
+    │   │       └ <sqlalchemy.orm.unitofwork.UOWTransaction object at 0x0000025034D786E0>
+    │   └ <function SaveUpdateAll.execute at 0x0000025032570720>
+    └ SaveUpdateAll(Mapper[ColumnInfoMySQL(column_info)])
+  File "D:\qdd\learn_wenshu\.venv\Lib\site-packages\sqlalchemy\orm\unitofwork.py", line 641, in execute
+    util.preloaded.orm_persistence.save_obj(
+    │    │         │               └ <function save_obj at 0x0000025032573060>
+    │    │         └ <module 'sqlalchemy.orm.persistence' from 'D:\\qdd\\learn_wenshu\\.venv\\Lib\\site-packages\\sqlalchemy\\orm\\persistence.py'>
+    │    └ <module 'sqlalchemy.util.preloaded' from 'D:\\qdd\\learn_wenshu\\.venv\\Lib\\site-packages\\sqlalchemy\\util\\preloaded.py'>
+    └ <module 'sqlalchemy.util' from 'D:\\qdd\\learn_wenshu\\.venv\\Lib\\site-packages\\sqlalchemy\\util\\__init__.py'>
+  File "D:\qdd\learn_wenshu\.venv\Lib\site-packages\sqlalchemy\orm\persistence.py", line 94, in save_obj
+    _emit_insert_statements(
+    └ <function _emit_insert_statements at 0x00000250325B18A0>
+  File "D:\qdd\learn_wenshu\.venv\Lib\site-packages\sqlalchemy\orm\persistence.py", line 1049, in _emit_insert_statements
+    result = connection.execute(
+             │          └ <function Connection.execute at 0x000002503223E980>
+             └ <sqlalchemy.engine.base.Connection object at 0x0000025034E22210>
+  File "D:\qdd\learn_wenshu\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1421, in execute
+    return meth(
+           └ <bound method ClauseElement._execute_on_connection of <sqlalchemy.sql.dml.Insert object at 0x0000025034D78AD0>>
+  File "D:\qdd\learn_wenshu\.venv\Lib\site-packages\sqlalchemy\sql\elements.py", line 526, in _execute_on_connection
+    return connection._execute_clauseelement(
+           │          └ <function Connection._execute_clauseelement at 0x000002503223ECA0>
+           └ <sqlalchemy.engine.base.Connection object at 0x0000025034E22210>
+  File "D:\qdd\learn_wenshu\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1643, in _execute_clauseelement
+    ret = self._execute_context(
+          │    └ <function Connection._execute_context at 0x000002503223EE80>
+          └ <sqlalchemy.engine.base.Connection object at 0x0000025034E22210>
+  File "D:\qdd\learn_wenshu\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1848, in _execute_context
+    return self._exec_single_context(
+           │    └ <function Connection._exec_single_context at 0x000002503223EF20>
+           └ <sqlalchemy.engine.base.Connection object at 0x0000025034E22210>
+  File "D:\qdd\learn_wenshu\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1988, in _exec_single_context
+    self._handle_dbapi_exception(
+    │    └ <function Connection._handle_dbapi_exception at 0x000002503223F1A0>
+    └ <sqlalchemy.engine.base.Connection object at 0x0000025034E22210>
+  File "D:\qdd\learn_wenshu\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 2365, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+          │                    │              │                 └ IntegrityError(1062, "Duplicate entry 'dim_region.region_id' for key 'column_info.PRIMARY'")
+          │                    │              └ (<class 'asyncmy.errors.IntegrityError'>, IntegrityError(1062, "Duplicate entry 'dim_region.region_id' for key 'column_info.P...
+          │                    └ <method 'with_traceback' of 'BaseException' objects>
+          └ IntegrityError('(asyncmy.errors.IntegrityError) (1062, "Duplicate entry \'dim_region.region_id\' for key \'column_info.PRIMAR...
+  File "D:\qdd\learn_wenshu\.venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1938, in _exec_single_context
+    self.dialect.do_executemany(
+    │    │       └ <function MySQLDialect_mysqldb.do_executemany at 0x000002503282E340>
+    │    └ <sqlalchemy.dialects.mysql.asyncmy.MySQLDialect_asyncmy object at 0x0000025032D05FD0>
+    └ <sqlalchemy.engine.base.Connection object at 0x0000025034E22210>
+  File "D:\qdd\learn_wenshu\.venv\Lib\site-packages\sqlalchemy\dialects\mysql\mysqldb.py", line 197, in do_executemany
+    rowcount = cursor.executemany(statement, parameters)
+               │      │           │          └ [('dim_region.region_id', 'region_id', 'varchar(20)', 'primary_key', '[]', '地区唯一标识。', '["\\u5730\\u533aID", "\\u533a\\u57dfID...
+               │      │           └ 'INSERT INTO column_info (id, name, type, `role`, examples, description, alias, table_id) VALUES (%s, %s, %s, %s, %s, %s, %s,...
+               │      └ <function AsyncAdapt_dbapi_cursor.executemany at 0x0000025032838360>
+               └ <sqlalchemy.dialects.mysql.asyncmy.AsyncAdapt_asyncmy_cursor object at 0x0000025034E0E700>
+  File "D:\qdd\learn_wenshu\.venv\Lib\site-packages\sqlalchemy\connectors\asyncio.py", line 242, in executemany
+    self._adapt_connection._handle_exception(error)
+    │    └ <member '_adapt_connection' of 'AsyncAdapt_dbapi_cursor' objects>
+    └ <sqlalchemy.dialects.mysql.asyncmy.AsyncAdapt_asyncmy_cursor object at 0x0000025034E0E700>
+  File "D:\qdd\learn_wenshu\.venv\Lib\site-packages\sqlalchemy\dialects\mysql\asyncmy.py", line 94, in _handle_exception
+    raise error
+          └ IntegrityError(1062, "Duplicate entry 'dim_region.region_id' for key 'column_info.PRIMARY'")
+  File "D:\qdd\learn_wenshu\.venv\Lib\site-packages\sqlalchemy\connectors\asyncio.py", line 238, in executemany
+    return self.await_(
+           │    └ <member 'await_' of 'AsyncAdapt_dbapi_cursor' objects>
+           └ <sqlalchemy.dialects.mysql.asyncmy.AsyncAdapt_asyncmy_cursor object at 0x0000025034E0E700>
+  File "D:\qdd\learn_wenshu\.venv\Lib\site-packages\sqlalchemy\util\_concurrency_py3k.py", line 132, in await_only
+    return current.parent.switch(awaitable)  # type: ignore[no-any-return,attr-defined] # noqa: E501
+           │       │             └ <coroutine object AsyncAdapt_dbapi_cursor._executemany_async at 0x0000025034E025C0>
+           │       └ <attribute 'parent' of 'greenlet.greenlet' objects>
+           └ <_AsyncIoGreenlet object at 0x0000025034E2A040 (otid=0x0000025030AA9BA0) dead>
+  File "D:\qdd\learn_wenshu\.venv\Lib\site-packages\sqlalchemy\util\_concurrency_py3k.py", line 196, in greenlet_spawn
+    value = await result
+                  └ <_cython_3_2_9.coroutine object at 0x0000025034E1A7B0>
+  File "D:\qdd\learn_wenshu\.venv\Lib\site-packages\sqlalchemy\connectors\asyncio.py", line 263, in _executemany_async
+    return await self._cursor.executemany(operation, seq_of_parameters)
+                 │    │                   │          └ [('dim_region.region_id', 'region_id', 'varchar(20)', 'primary_key', '[]', '地区唯一标识。', '["\\u5730\\u533aID", "\\u533a\\u57dfID...
+                 │    │                   └ 'INSERT INTO column_info (id, name, type, `role`, examples, description, alias, table_id) VALUES (%s, %s, %s, %s, %s, %s, %s,...
+                 │    └ <member '_cursor' of 'AsyncAdapt_dbapi_cursor' objects>
+                 └ <sqlalchemy.dialects.mysql.asyncmy.AsyncAdapt_asyncmy_cursor object at 0x0000025034E0E700>
+  File "asyncmy/cursors.pyx", line 271, in executemany
+    return await self._executemany(query, args)
+  File "asyncmy/cursors.pyx", line 317, in _executemany
+    return await self._do_execute_many(
+  File "asyncmy/cursors.pyx", line 376, in _do_execute_many
+    rows += await self.execute(sql)
+  File "asyncmy/cursors.pyx", line 245, in execute
+    result = await self._query(query)
+  File "asyncmy/cursors.pyx", line 490, in _query
+    await conn.query(q)
+  File "asyncmy/connection.pyx", line 740, in query
+    await self._read_query_result(unbuffered=unbuffered)
+  File "asyncmy/connection.pyx", line 1116, in _read_query_result
+    await result.read()
+  File "asyncmy/connection.pyx", line 1653, in read
+    first_packet = await self.connection.read_packet()
+  File "asyncmy/connection.pyx", line 1087, in read_packet
+    packet.raise_for_error()
+  File "asyncmy/protocol.pyx", line 956, in asyncmy.protocol.MysqlPacket.raise_for_error
+    cpdef raise_for_error(self):
+  File "asyncmy/protocol.pyx", line 957, in asyncmy.protocol.MysqlPacket.raise_for_error
+    errors.raise_mysql_exception(self._data)
+    │      └ <cyfunction raise_mysql_exception at 0x0000025032C68530>
+    └ <module 'asyncmy.errors' from 'D:\\qdd\\learn_wenshu\\.venv\\Lib\\site-packages\\asyncmy\\errors.cp313-win_amd64.pyd'>
+  File "asyncmy/errors.pyx", line 141, in asyncmy.errors.raise_mysql_exception
+    cpdef raise_mysql_exception(bytes data):
+          └ <cyfunction raise_mysql_exception at 0x0000025032C68530>
+  File "asyncmy/errors.pyx", line 156, in asyncmy.errors.raise_mysql_exception
+    raise exc
+
+sqlalchemy.exc.IntegrityError: (asyncmy.errors.IntegrityError) (1062, "Duplicate entry 'dim_region.region_id' for key 'column_info.PRIMARY'")
+[SQL: INSERT INTO column_info (id, name, type, `role`, examples, description, alias, table_id) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)]
+[parameters: [('dim_region.region_id', 'region_id', 'varchar(20)', 'primary_key', '[]', '地区唯一标识。', '["\\u5730\\u533aID", "\\u533a\\u57dfID"]', 'dim_region'), ('dim_region.province', 'province', 'varchar(50)', 'dimension', '[]', '订单所属的省份名称。', '["\\u7701\\u4efd", "\\u7701", "\\u6240\\u5728\\u7701\\u4efd"]', 'dim_region'), ('dim_region.region_name', 'region_name', 'varchar(50)', 'dimension', '[]', '订单所属的大区名称，如华东、华南等。', '["\\u5730\\u533a", "\\u533a\\u57df", "\\u5927\\u533a"]', 'dim_region'), ('dim_region.country', 'country', 'varchar(50)', 'dimension', '[]', '地区所属国家名称。', '["\\u56fd\\u5bb6", "\\u56fd\\u5bb6\\u540d\\u79f0"]', 'dim_region'), ('dim_customer.customer_id', 'customer_id', 'varchar(20)', 'primary_key', '[]', '客户唯一标识。', '["\\u5ba2\\u6237ID", "\\u7528\\u6237ID"]', 'dim_customer'), ('dim_customer.customer_name', 'customer_name', 'varchar(50)', 'dimension', '[]', '客户名称。', '["\\u5ba2\\u6237\\u540d\\u79f0", "\\u7528\\u6237\\u540d\\u79f0"]', 'dim_customer'), ('dim_customer.gender', 'gender', 'varchar(10)', 'dimension', '[]', '客户性别。', '["\\u6027\\u522b"]', 'dim_customer'), ('dim_customer.member_level', 'member_level', 'varchar(20)', 'dimension', '[]', '客户会员等级。', '["\\u4f1a\\u5458\\u7b49\\u7ea7", "\\u7528\\u6237\\u7b49\\u7ea7"]', 'dim_customer')  ... displaying 10 of 24 total bound parameter sets ...  ('fact_order.order_quantity', 'order_quantity', 'int', 'measure', '[]', '订单中商品的购买数量。', '["\\u9500\\u91cf", "\\u8d2d\\u4e70\\u6570\\u91cf", "\\u4ef6\\u6570"]', 'fact_order'), ('fact_order.order_amount', 'order_amount', 'float', 'measure', '[]', '订单金额。', '["\\u9500\\u552e\\u989d", "\\u8ba2\\u5355\\u91d1\\u989d", "\\u6536\\u5165"]', 'fact_order')]]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+2026-08-16 19:24:44.785 | INFO     | request_id - 1 | __main__:build:49 - 外部依赖服务检查完成
+2026-08-16 19:24:44.831 | INFO     | request_id - 1 | app.services.meta_knowledge_service:build:44 - 加载配置文件完成
+2026-08-16 19:24:44.923 | INFO     | request_id - 1 | app.services.meta_knowledge_service:build:49 - 保存表信息到meta数据库
+2026-08-16 19:24:48.156 | INFO     | request_id - 1 | app.services.meta_knowledge_service:build:52 - 为列信息添加向量索引
+2026-08-16 19:24:48.220 | INFO     | request_id - 1 | app.services.meta_knowledge_service:build:55 - 为值信息添加全文索引
+2026-08-16 19:24:48.241 | INFO     | request_id - 1 | app.services.meta_knowledge_service:build:60 - 保存指标信息到meta数据库
+2026-08-16 19:24:48.744 | INFO     | request_id - 1 | app.services.meta_knowledge_service:build:63 - 为指标信息添加向量索引
+2026-08-16 19:24:48.748 | INFO     | request_id - 1 | __main__:<module>:85 - build complete

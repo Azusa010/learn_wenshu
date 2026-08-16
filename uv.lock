@@ -1267,6 +1267,7 @@ dependencies = [
     { name = "langchain-deepseek" },
     { name = "langchain-huggingface" },
     { name = "langgraph" },
+    { name = "logger" },
     { name = "loguru" },
     { name = "omegaconf" },
     { name = "pyyaml" },
@@ -1287,12 +1288,19 @@ requires-dist = [
     { name = "langchain-deepseek", specifier = ">=1.1.0" },
     { name = "langchain-huggingface", specifier = ">=1.2.2" },
     { name = "langgraph", specifier = ">=1.2.11" },
+    { name = "logger" },
     { name = "loguru", specifier = ">=0.7.3" },
     { name = "omegaconf", specifier = ">=2.3.1" },
     { name = "pyyaml", specifier = ">=6.0.3" },
     { name = "qdrant-client", specifier = ">=1.19.0" },
     { name = "sqlalchemy", specifier = ">=2.0.52" },
 ]
+
+[[package]]
+name = "logger"
+version = "1.4"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/73/2f/b0d28eaa1e2c1cf64129f8da3fe701888d152677fec708cd0f13e8309e1e/logger-1.4.tar.gz", hash = "sha256:4ecac57133c6376fa215f0fe6b4dc4d60e4d1ad8be005cab4e8a702df682f8b3", size = 1187, upload-time = "2013-10-22T16:49:01.48Z" }
 
 [[package]]
 name = "loguru"
