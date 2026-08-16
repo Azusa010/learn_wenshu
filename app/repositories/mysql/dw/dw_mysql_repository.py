@@ -2,7 +2,7 @@ from sqlalchemy.ext.asyncio.session import AsyncSession
 from sqlalchemy.sql.expression import text
 
 
-class DWMysqlRepository:
+class DwMysqlRepository:
     def __init__(self, session: AsyncSession):
         self.session = session
 
