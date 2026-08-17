@@ -17,6 +17,9 @@ from app.agent.nodes.recall_metric import recall_metric
 from app.agent.nodes.recall_value import recall_value
 from app.agent.nodes.validate_sql import validate_sql
 from app.agent.state import DataAgentState
+from app.clients.embedding_client_manager import embedding_manager
+from app.clients.qdrant_client_manager import qdrant_client_manager
+from app.repositories.qdrant.column_qdrant_repository import ColumnQdrantRepository
 
 graph_builder = StateGraph(state_schema=DataAgentState, context_schema=DataAgentContext)
 
@@ -61,9 +64,16 @@ graph = graph_builder.compile()
 if __name__ == '__main__':
     async def test():
         state = DataAgentState(query = "统计华北地区销售总额")
-        runtime = DataAgentContext()
+
+        embedding_manager.init()
+        qdrant_client_manager.init()
+        column_qdrant_repository= ColumnQdrantRepository(qdrant_client_manager.client)
+        runtime = DataAgentContext(
+            embedding_client=embedding_manager.client,
+            column_qdrant_repository=column_qdrant_repository
+        )
         async for chunk in graph.astream(input=state,context=runtime,stream_mode="custom"):
             print(chunk)
-
+        await qdrant_client_manager.close()
 
     asyncio.run(test())

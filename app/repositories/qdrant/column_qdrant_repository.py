@@ -6,10 +6,9 @@ from conf.app_config import app_config
 
 
 class ColumnQdrantRepository:
+    collection_name = "data-agent-column"
 
-    collection_name="data-agent-column"
-
-    def __init__(self,client:AsyncQdrantClient):
+    def __init__(self, client: AsyncQdrantClient):
         self.client = client
 
     async def ensure_collection(self):
@@ -24,7 +23,7 @@ class ColumnQdrantRepository:
                 vectors_config=VectorParams(size=app_config.qdrant.embedding_size, distance=Distance.COSINE),
             )
 
-    async def upsert_embedding(self, ids:list[str], embeddings:list[list[float]], payloads:list[ColumnInfoQdrant]):
+    async def upsert_embedding(self, ids: list[str], embeddings: list[list[float]], payloads: list[ColumnInfoQdrant]):
         """
         保存列信息向量数据到qdrant
         :param ids:
@@ -33,16 +32,24 @@ class ColumnQdrantRepository:
         :return:
         """
         # 合并[(id,embedding,payload),(id,embedding,payload),(id,embedding,payload)]
-        zipped=list(zip(ids,embeddings,payloads))
+        zipped = list(zip(ids, embeddings, payloads))
         # 构建PointStruct [PointStruct(id,embedding,payload),PointStruct(id,embedding,payload),PointStruct(id,embedding,payload)]
-        points=[PointStruct(
+        points = [PointStruct(
             id=id,
             vector=embeddings,
             payload=payload
-        ) for id,embeddings,payload in zipped]
+        ) for id, embeddings, payload in zipped]
 
         # 保存向量数据到qdrant
         await self.client.upsert(
             collection_name=self.collection_name,
             points=points
         )
+
+    async def search(self, embeddings: list[float], score_threshold: float = 0.6):
+        points = await self.client.search(
+            collection_name=self.collection_name,
+            query=embeddings,
+            score_threshold=score_threshold,
+        )
+        return [point.payload for point in points.points]
