@@ -1,3 +1,5 @@
+import asyncio
+
 from langgraph.constants import START, END
 from langgraph.graph import StateGraph
 
@@ -56,4 +58,12 @@ graph_builder.add_edge("execute_sql", END)
 
 graph = graph_builder.compile()
 
-print(graph.get_graph().draw_mermaid())
+if __name__ == '__main__':
+    async def test():
+        state = DataAgentState(query = "统计华北地区销售总额")
+        runtime = DataAgentContext()
+        async for chunk in graph.astream(input=state,context=runtime,stream_mode="custom"):
+            print(chunk)
+
+
+    asyncio.run(test())

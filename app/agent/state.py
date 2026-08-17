@@ -2,4 +2,5 @@ from typing import TypedDict
 
 
 class DataAgentState(TypedDict):
-    pass
+    query: str
+    error: bool|None = None
