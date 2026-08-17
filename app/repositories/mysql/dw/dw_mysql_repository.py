@@ -21,3 +21,13 @@ class DwMysqlRepository:
         result = await self.session.execute(text(sql))
         # 解析结果
         return result.scalars().fetchall();
+
+    async def get_db_info(self):
+        """
+        查询数据库信息和方言
+        :return:
+        """
+        result = await self.session.execute(text("select version()"))
+        version = result.scalar()
+        dialect = self.session.bind.dialect.name
+        return {"version": version, "dialect": dialect}

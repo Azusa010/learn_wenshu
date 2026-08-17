@@ -26,6 +26,16 @@ class MetricInfoState(TypedDict):
     relevant_columns: list[str]
     alias: list[str]
 
+class DateInfoState(TypedDict):
+    date: str
+    weekday : str
+    quarter : str
+
+class DBInfoState(TypedDict):
+    version: str
+    dialect: str
+
+
 class DataAgentState(TypedDict):
     query: str
     error: bool | None = None
@@ -35,3 +45,5 @@ class DataAgentState(TypedDict):
     recall_values: list[ValueInfoEs]
     table_infos:list[TableInfoState]
     metric_infos: list[MetricInfoState]
+    date_info: DateInfoState
+    db_info: DBInfoState
