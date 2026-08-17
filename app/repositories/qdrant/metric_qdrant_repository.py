@@ -6,10 +6,9 @@ from app.models.qdrant.metric_info_qdrant import MetricInfoQdrant
 
 
 class MetricQdrantRepository:
-
     collection_name = "data-agent-metric"
 
-    def __init__(self,client:AsyncQdrantClient):
+    def __init__(self, client: AsyncQdrantClient):
         self.client = client
 
     async def ensure_collection(self):
@@ -23,7 +22,8 @@ class MetricQdrantRepository:
                 vectors_config=VectorParams(size=app_config.qdrant.embedding_size, distance=Distance.COSINE)
             )
 
-    async def upsert_embeddings(self, ids:list[str], embeddings:list[list[float]], payloads:list[MetricInfoQdrant],batch_size=5):
+    async def upsert_embeddings(self, ids: list[str], embeddings: list[list[float]], payloads: list[MetricInfoQdrant],
+                                batch_size=5):
         """
         保存指标信息到qdrant
         :param ids:
@@ -32,23 +32,30 @@ class MetricQdrantRepository:
         :return:
         """
         # 整合集合数据
-        zipped=list(zip(ids,embeddings,payloads))
+        zipped = list(zip(ids, embeddings, payloads))
         # 循环遍历批次处理
         for i in range(0, len(zipped), batch_size):
             # 获取批量的point数据
-            batch = zipped[i:i+batch_size]
+            batch = zipped[i:i + batch_size]
             # 构建points,其中点对象PointStruct
-            points=[PointStruct(
+            points = [PointStruct(
                 id=id,
                 vector=embedding,
                 payload=payload,
 
-            ) for id,embedding,payload in batch]
+            ) for id, embedding, payload in batch]
             # 批量存储指标
             await self.client.upsert(
                 collection_name=self.collection_name,
                 points=points
             )
 
-    async def search_embedding(self, embeddings):
-        pass
+    async def search_embedding(self, embeddings:list[float],limit:int=10,score_threshold:float=0.6):
+        points = await self.client.query_points(
+            collection_name=self.collection_name,
+            query=embeddings,
+            limit=limit,
+            score_threshold=score_threshold,
+        )
+
+        return [point.payload for point in points]
