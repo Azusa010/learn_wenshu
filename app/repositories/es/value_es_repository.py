@@ -34,7 +34,7 @@ class ValueEsRepository:
                 mappings=self.es_index_mappings
             )
 
-    async def upsert_values(self, value_infos:list[ValueInfoEs],batch_size:int=20):
+    async def upsert_values(self, value_infos: list[ValueInfoEs], batch_size: int = 20):
         """
         为值数据添加全文索引
         :param value_infos:
@@ -56,13 +56,24 @@ class ValueEsRepository:
             # 定义集合，组成operations
             operations = []
             # 获取批次value数据
-            batch_value_infos=value_infos[i:i+batch_size]
+            batch_value_infos = value_infos[i:i + batch_size]
             # 构建operations
             for batch_value_info in batch_value_infos:
                 # 追加索引指定
-                operations.append({"index":{"_index": self.es_index_name}})
+                operations.append({"index": {"_index": self.es_index_name}})
                 # 追加文档值
                 operations.append(batch_value_info)
             await self.client.bulk(
                 operations=operations
             )
+
+    async def search(self, keyword: str):
+        resp = await self.client.search(
+            index=self.es_index_name,
+            query={
+                "match": {
+                    "name": keyword
+                }
+            }
+        )
+        return [re["_source"] for re in resp["hits"]["hits"]]
