@@ -37,7 +37,7 @@ async def recall_value(state: DataAgentState, runtime: Runtime[DataAgentContext]
 
         recall_values:list[ValueInfoEs] =list(value_maps.values())
 
-        logger.info(f"召回字段取值:{[value_maps.keys()]}")
+        logger.info(f"召回字段取值:{list(value_maps.keys())}")
         return {"recall_values": recall_values}
 
     except Exception as e:
