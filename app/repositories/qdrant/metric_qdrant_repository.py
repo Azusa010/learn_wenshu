@@ -49,3 +49,6 @@ class MetricQdrantRepository:
                 collection_name=self.collection_name,
                 points=points
             )
+
+    async def search_embedding(self, embeddings):
+        pass

@@ -28,7 +28,7 @@ async def recall_column(state: DataAgentState, runtime: Runtime[DataAgentContext
         prompt = PromptTemplate(template=load_prompt("extend_keywords_for_column_recall"), input_variables=["query"])
         output_parser = JsonOutputParser()
         chain = prompt | llm | output_parser
-        result = chain.invoke({"query": query})
+        result = await chain.ainvoke({"query": query})
         keywords = set(keywords + result)
 
         recall_columns_map: dict[str, ColumnInfoQdrant] = {}
