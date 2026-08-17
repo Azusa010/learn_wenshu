@@ -40,6 +40,7 @@ async def merge_retrieved_info(state: DataAgentState, runtime: Runtime[DataAgent
     # 获取repository
     meta_mysql_repository = runtime.context["meta_mysql_repository"]
 
+    # 根据召回指标取值
     retrieved_column_maps: dict[str, ColumnInfoQdrant] = {recall_column["id"]: recall_column for recall_column in
                                                           recall_columns}
     for recall_metric in recall_metrics:
@@ -47,3 +48,14 @@ async def merge_retrieved_info(state: DataAgentState, runtime: Runtime[DataAgent
             if e not in retrieved_column_maps:
                 column_info_mysql: ColumnInfoMySQL = await meta_mysql_repository.get_column_info_by_id(e)
                 retrieved_column_maps[e] = convert_column_info_from_mysql_to_qdrant(column_info_mysql)
+
+    # 根据召回字段取值
+    for recall_value in recall_values:
+        column_id = recall_value["column_id"]
+        column_value = recall_value["value"]
+        if column_id not in retrieved_column_maps:
+            column_info_mysql = await meta_mysql_repository.get_column_info_by_id(column_id)
+            retrieved_column_maps[column_id] = convert_column_info_from_mysql_to_qdrant(column_info_mysql)
+
+        if column_value not in retrieved_column_maps[column_id]["examples"]:
+            retrieved_column_maps[column_id]["examples"].append(column_value)
