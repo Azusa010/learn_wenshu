@@ -29,6 +29,8 @@ async def recall_metric(state: DataAgentState, runtime: Runtime[DataAgentContext
         result = await chain.ainvoke({"query": query})
         keywords = set(keywords + result)
 
+        logger.info(f"扩展后关键字:{keywords}")
+
         retrieved_metric_map: dict[str, MetricInfoQdrant] = {}
         for keyword in keywords:
             embeddings = await embedding_client.aembed_query(keyword)
@@ -40,7 +42,7 @@ async def recall_metric(state: DataAgentState, runtime: Runtime[DataAgentContext
                 if metric_id not in retrieved_metric_map:
                     retrieved_metric_map[metric_id] = payload
 
-        recall_metrics:list[MetricInfoQdrant] = list(retrieved_metric_map.values())
+        recall_metrics: list[MetricInfoQdrant] = list(retrieved_metric_map.values())
         logger.info(f"召回指标成功:{retrieved_metric_map.keys()}")
         return {"recall_metrics": recall_metrics}
 
