@@ -47,3 +47,4 @@ class DataAgentState(TypedDict):
     metric_infos: list[MetricInfoState]
     date_info: DateInfoState
     db_info: DBInfoState
+    sql:str

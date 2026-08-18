@@ -37,6 +37,7 @@ async def generate_sql(state:DataAgentState,runtime:Runtime[DataAgentContext]):
             }
         )
         logger.info(sql)
+        return {"sql":sql}
     except Exception as e:
         logger.error(e)
         raise

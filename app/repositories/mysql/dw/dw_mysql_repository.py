@@ -31,3 +31,6 @@ class DwMysqlRepository:
         version = result.scalar()
         dialect = self.session.bind.dialect.name
         return {"version": version, "dialect": dialect}
+
+    def validate_sql(self, sql:str):
+        self.session.execute(text(f"explain {sql}"))
