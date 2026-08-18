@@ -18,7 +18,7 @@ async def recall_column(state: DataAgentState, runtime: Runtime[DataAgentContext
     await asyncio.sleep(1)
     # 获取流对象
     writer = runtime.stream_writer
-    writer({"state": "召回字段"})
+    writer({"stage": "召回字段"})
     try:
         embedding_client = runtime.context["embedding_client"]
         column_qdrant_repository = runtime.context["column_qdrant_repository"]

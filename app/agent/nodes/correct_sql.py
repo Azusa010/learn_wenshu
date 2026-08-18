@@ -16,7 +16,7 @@ async def correct_sql(state: DataAgentState, runtime: Runtime[DataAgentContext])
     await asyncio.sleep(1)
     # 获取流对象
     writer = runtime.stream_writer
-    writer({"state": "矫正sql语句"})
+    writer({"stage": "矫正sql语句"})
     sql = state["sql"]
     try:
         error = state["error"]

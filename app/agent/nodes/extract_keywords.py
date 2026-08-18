@@ -22,7 +22,7 @@ async def extract_keywords(state: DataAgentState, runtime: Runtime[DataAgentCont
     await asyncio.sleep(1)
     # 获取流对象
     writer = runtime.stream_writer
-    writer({"state": "额外关键词"})
+    writer({"stage": "额外关键词"})
     try:
         query = state["query"]
         allow_pos = (

@@ -16,7 +16,7 @@ async def filter_metric(state: DataAgentState, runtime: Runtime[DataAgentContext
     await asyncio.sleep(1)
     # 获取流对象
     writer = runtime.stream_writer
-    writer({"state": "过滤指标"})
+    writer({"stage": "过滤指标"})
     try:
         query = state["query"]
         metric_infos = state["metric_infos"]

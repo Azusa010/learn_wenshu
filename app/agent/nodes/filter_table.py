@@ -15,7 +15,7 @@ async def filter_table(state: DataAgentState, runtime: Runtime[DataAgentContext]
     await asyncio.sleep(1)
     # 获取流对象
     writer = runtime.stream_writer
-    writer({"state": "过滤表信息"})
+    writer({"stage": "过滤表信息"})
     try:
         query = state["query"]
         table_infos: list[TableInfoState] = state["table_infos"]

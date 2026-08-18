@@ -16,7 +16,7 @@ from app.repositories.es import value_es_repository
 async def recall_value(state: DataAgentState, runtime: Runtime[DataAgentContext]):
     # 获取流对象
     writer = runtime.stream_writer
-    writer({"state": "召回字段值"})
+    writer({"stage": "召回字段值"})
     try:
         value_es_repository = runtime.context["value_es_repository"]
         query = state["query"]

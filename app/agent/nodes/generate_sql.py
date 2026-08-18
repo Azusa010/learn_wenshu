@@ -16,7 +16,7 @@ async def generate_sql(state:DataAgentState,runtime:Runtime[DataAgentContext]):
     await asyncio.sleep(1)
     # 获取流对象
     writer = runtime.stream_writer
-    writer({"state": "生成sql"})
+    writer({"stage": "生成sql"})
     try:
         query = state["query"]
         table_infos = state["table_infos"]

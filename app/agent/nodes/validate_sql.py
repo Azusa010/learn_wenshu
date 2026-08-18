@@ -11,7 +11,7 @@ async def validate_sql(state: DataAgentState, runtime: Runtime[DataAgentContext]
     await asyncio.sleep(1)
     # 获取流对象
     writer = runtime.stream_writer
-    writer({"state": "校验sql"})
+    writer({"stage": "校验sql"})
     sql = state["sql"]
     try:
         dw_mysql_repository = runtime.context["dw_mysql_repository"]

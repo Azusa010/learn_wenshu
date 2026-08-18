@@ -50,7 +50,7 @@ async def merge_retrieved_info(state: DataAgentState, runtime: Runtime[DataAgent
     await asyncio.sleep(1)
     # 获取流对象
     writer = runtime.stream_writer
-    writer({"state": "合并召回信息"})
+    writer({"stage": "合并召回信息"})
     try:
         # 获取召回的字段信息
         recall_columns: list[ColumnInfoQdrant] = state["recall_columns"]

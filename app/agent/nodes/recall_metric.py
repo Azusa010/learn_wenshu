@@ -16,7 +16,7 @@ async def recall_metric(state: DataAgentState, runtime: Runtime[DataAgentContext
     await asyncio.sleep(1)
     # 获取流对象
     writer = runtime.stream_writer
-    writer({"state": "召回指标"})
+    writer({"stage": "召回指标"})
     try:
         embedding_client = runtime.context["embedding_client"]
         qdrant_client = runtime.context["metric_qdrant_repository"]

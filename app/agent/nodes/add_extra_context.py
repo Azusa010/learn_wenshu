@@ -13,7 +13,7 @@ async def add_extra_context(state: DataAgentState, runtime: Runtime[DataAgentCon
     await asyncio.sleep(1)
     # 获取流对象
     writer = runtime.stream_writer
-    writer({"state": "添加额外上下文"})
+    writer({"stage": "添加额外上下文"})
     dw_mysql_repository = runtime.context["dw_mysql_repository"]
 
     try:
